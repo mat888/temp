@@ -27,8 +27,13 @@ class Debug extends ModTemplate {
     console.log("before test tx");
 
     let newtx = app.wallet.createUnsignedTransaction();
+
+    /*
     newtx.msg.my_data = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
     newtx.msg.module = "Debug";
+    */
+
+    newtx.msg = {"my_data":"HHHHHHHHHHHHHHHHHHHHHHHH", "module":this.name};
 
     newtx = app.wallet.signTransaction(newtx);
     app.network.propagateTransaction(newtx);
@@ -44,7 +49,8 @@ class Debug extends ModTemplate {
     }
 
     let txmsg = tx.returnMessage();
-    console.log("MY MESSAGE: " + txmsg);
+    console.log("MY MESSAGE: ");
+    console.log(txmsg);  
 
   }
 
@@ -62,4 +68,3 @@ class Debug extends ModTemplate {
 
 
 module.exports = Debug;
-
