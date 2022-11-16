@@ -10,8 +10,8 @@ class Debug extends ModTemplate {
     super(app);
 
     this.app            = app;
-    this.name           = "debug";
-    this.appname        = "debug";
+    this.name           = "Debug";
+    this.appname        = "Debug";
     this.description    = "Email plugin that allows visual exploration and debugging of the Saito wallet.";
     this.categories     = "Utilities Core";
     this.icon		= "fas fa-code"
@@ -28,7 +28,7 @@ class Debug extends ModTemplate {
 
     let newtx = app.wallet.createUnsignedTransaction();
     newtx.msg.my_data = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB";
-    newtx.msg.module = "debug";
+    newtx.msg.module = "Debug";
 
     newtx = app.wallet.signTransaction(newtx);
     app.network.propagateTransaction(newtx);
@@ -38,12 +38,12 @@ class Debug extends ModTemplate {
   }
 
   async onConfirmation(blk, tx, conf, app) {
+    console.log("onConfirmation");
     if (conf == 0) {
         console.log("if true");
     }
-    console.log("onConfirmation");
 
-    txmsg = tx.returnMessage();
+    let txmsg = tx.returnMessage();
     console.log("MY MESSAGE: " + txmsg);
 
   }
@@ -62,3 +62,4 @@ class Debug extends ModTemplate {
 
 
 module.exports = Debug;
+
